@@ -63,12 +63,12 @@ public class HotelApplication
 
         /* EMPLOYEE TESTS */
         // create an employee that worked 0 hour and has a rate of $20
-        // call the punchIn method (10.0)
-        // call the punchOut method (12.0)
-        // verify the following
-        // - hours worked = 2
-        // - total pay = $40
-        // - regular hours = 2
-        // - overtime hours = 0
+        //        // call the punchIn method (10.0)
+        //        // call the punchOut method (12.0)
+        //        // verify the following
+        //        // - hours worked = 2
+        //        // - total pay = $40
+        //        // - regular hours = 2
+        //        // - overtime hours = 0
     }
 }

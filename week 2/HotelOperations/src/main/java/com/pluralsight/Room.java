@@ -1,10 +1,40 @@
 package com.pluralsight;
 
-public class Room
-{
-    // create private variables
+public class Room {
+    private int numberOfBeds;
+    private double price;
+    private boolean isOccupied;
+    private boolean isDirty;
 
-    // create a constructor that takes all variables
+    public Room(int numberOfBeds, double price) {
+        this.numberOfBeds = numberOfBeds;
+        this.price = price;
+        this.isOccupied = false;
+        this.isDirty = false;
+    }
 
-    // create getters here (this class should not have any setters)
+    // Getters
+    public int getNumberOfBeds() {
+        return numberOfBeds;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public boolean isOccupied() {
+        return isOccupied;
+    }
+
+    public boolean isDirty() {
+        return isDirty;
+    }
+
+    public boolean isAvailable() {
+        return !isOccupied && !isDirty;
+    }
+
+
 }
+
+
