@@ -4,21 +4,33 @@
 
 
 -- 2.	Write a query to list the product id, product name, and unit price of every product.
-SELECT ProductId
-	, ProductName
-    , UnitPrice
-FROM products;
-
+-- , ProductName
+--    , UnitPrice
+-- FROM products;
+-- ;
 -- 3.	Write a query to list the product id, product name, and unit price of every product.    
 -- Except this time, order then in ascending order by price.
-
-
+SELECT ProductID
+	, ProductName
+    , UnitPrice
+FROM products
+ORDER BY UnitPrice ASC;
+;
 -- 4.	What are the products that we carry where the unit price is $7.50 or less?  
-
+SELECT ProductsId
+	, ProductName
+    , UnitPrice
+FROM products
+WHERE NOT UnitPrice > 7.5
+;
 
 -- 5.	What are the products that we carry where we have at least 100 units on hand?   
 --  Order them in descending order by price. 
-
+ -- SELECT 
+-- FROM products
+-- WHERE UnitsInStock >= 100
+-- ORDER BY UnitPrice DESC
+;
 
 -- 6.	What are the products that we carry where we have at least 100 units on hand?    
 -- Order them in descending order by price.     
@@ -44,8 +56,10 @@ FROM products;
 
 
 -- 12.	What employees have "manager" in their titles?
-
-
+SELECT Title 
+FROM employees
+WHERE Title LIKE '%manager%';
+;
 -- 13.	List the distinct job titles in employees.
 
 
@@ -57,3 +71,7 @@ FROM products;
 
 -- 16.	Examine the Products table.  How do you know what supplier supplies each product?  
 -- Write a query to list all of the items that  "Tokyo Traders" supplies to Northwind
+SELECT *
+FROM products
+INNER JOIN categories ON products.CategoryID = categories.CategoryID
+ORDER BY products.CategoryID;
