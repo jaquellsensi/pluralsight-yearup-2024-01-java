@@ -1,6 +1,7 @@
 package com.pluralsight;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,7 +17,7 @@ public class UserInterface {
     public void display() {
         int choice;
         do {
-            // Display the main menu options
+            // Display the main menu
             System.out.println("Car Dealership Management System");
             System.out.println("1. Get Vehicles by Price");
             System.out.println("2. Get Vehicles by Make and Model");
@@ -88,7 +89,7 @@ public class UserInterface {
             System.out.println("No vehicles found within the specified price range.");
         } else {
             for (Vehicle vehicle : vehiclesByPrice) {
-                System.out.println(vehicle); // Assuming Vehicle class has overridden toString() method
+                System.out.println(vehicle);
             }
         }
     }
@@ -112,39 +113,112 @@ public class UserInterface {
         }
     }
 
-    public void processGetByYearRequest() {
-        // Process user request to get vehicles by year
-        // Get input for min and max year
-        // Call dealership method to get vehicles by year and display results
+    private void processGetByYearRequest() {
+        System.out.println("Enter the minimum year: ");
+        int minYear = scanner.nextInt();
+        System.out.println("Enter the maximum year: ");
+        int maxYear = scanner.nextInt();
+
+        List<Vehicle> vehiclesByYear = dealership.getVehiclesByYear(minYear, maxYear);
+
+        System.out.println("Vehicles within year range " + minYear + " - " + maxYear + ":");
+        if (vehiclesByYear.isEmpty()) {
+            System.out.println("No vehicles found within the specified year range.");
+        } else {
+            for (Vehicle vehicle : vehiclesByYear) {
+                System.out.println(vehicle);
+            }
+        }
     }
 
     public void processGetByColorRequest() {
-        // Process user request to get vehicles by color
-        // Get input for color
-        // Call dealership method to get vehicles by color and display results
+        System.out.println("Enter the color: ");
+        String color = scanner.next();
+
+        List<Vehicle> vehiclesByColor = dealership.getVehiclesByColor(color);
+
+        System.out.println("Vehicles with color " + color + ":");
+        if (vehiclesByColor.isEmpty()) {
+            System.out.println("No vehicles found with the specified year color.");
+        } else {
+            for (Vehicle vehicle : vehiclesByColor) {
+                System.out.println(vehicle);
+            }
+        }
     }
 
-    public void processGetByMileageRequest() {
-        // Process user request to get vehicles by mileage
-        // Get input for min and max mileage
-        // Call dealership method to get vehicles by mileage and display results
+    private void processGetByMileageRequest() {
+        System.out.println("Enter the minimum mileage: ");
+        double minMileage = scanner.nextDouble();
+        System.out.println("Enter the maximum mileage: ");
+        double maxMileage = scanner.nextDouble();
+
+        List<Vehicle> vehiclesByMileage = dealership.getVehiclesByMileage(minMileage, maxMileage);
+
+        System.out.println("Vehicles within mileage range " + minMileage + " - " + maxMileage + ":");
+        if (vehiclesByMileage.isEmpty()) {
+            System.out.println("No vehicles found within the specified mile range.");
+        } else {
+            for (Vehicle vehicle : vehiclesByMileage) {
+                System.out.println(vehicle);
+            }
+        }
     }
 
-    public void processGetByVehicleTypeRequest() {
-        // Process user request to get vehicles by vehicle type
-        // Get input for vehicle type
-        // Call dealership method to get vehicles by vehicle type and display results
+    private void processGetByVehicleTypeRequest() {
+        System.out.println("Enter the vehicles type: ");
+        String type = scanner.next().toLowerCase();
+
+        List<Vehicle> validTypes = Arrays.asList(44901 | 2012 | Honda | Civic | SUV | Gray | 103221|6995.00);
+        if (!validTypes.contains(type)) {
+            System.out.println("Invalid vehicle type. Please enter a valid type.");
+            return;
+        }
+
+        List<Vehicle> vehiclesByType = dealership.getVehiclesByType(type);
+
+        System.out.println("Vehicles with type " + type + ":");
+        if (vehiclesByType.isEmpty()) {
+            System.out.println("No vehicles found with the specified type.");
+        } else {
+            for (Vehicle vehicle : vehiclesByType) {
+                System.out.println(vehicle);
+            }
+        }
     }
 
-    public void processGetAllVehiclesRequest() {
-        // Process user request to get all vehicles
-        // Call dealership method to get all vehicles and display results
+    private void processGetAllVehiclesRequest() {
+        List<Vehicle> allVehicles = dealership.getAllVehicles();
+
+        System.out.println("All vehicles: ");
+        if (allVehicles.isEmpty()) {
+            System.out.println("No vehicles found.");
+        } else {
+            for (Vehicle vehicle : allVehicles) {
+                System.out.println(vehicle);
+            }
+        }
     }
 
-    public void processAddVehicleRequest() {
-        // Process user request to add a vehicle
-        // Get input for vehicle details
-        // Call dealership method to add the vehicle
+        private void processAddVehicleRequest() {
+            System.out.println("Enter details of vehicles to add:");
+            System.out.println("Make:");
+            String make = scanner.next();
+            System.out.println("Model:");
+            String model = scanner.next();
+            System.out.println("Year:");
+            int year = scanner.nextInt();
+            System.out.println("Color:");
+            String color = scanner.next();
+            System.out.println("Mileage:");
+            double mileage = scanner.nextDouble();
+
+            Vehicle vehicle = new Vehicle(make, model, year, color, mileage);
+
+            dealership.addVehicle(newVehicle);
+
+            System.out.println("Vehicle added successfully:");
+            System.out.println(newVehicle);
     }
 
     public void processRemoveVehicleRequest() {
