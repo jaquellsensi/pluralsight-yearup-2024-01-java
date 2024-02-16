@@ -169,7 +169,7 @@ public class UserInterface {
         System.out.println("Enter the vehicles type: ");
         String type = scanner.next().toLowerCase();
 
-        List<Vehicle> validTypes = Arrays.asList(44901 | 2012 | Honda | Civic | SUV | Gray | 103221|6995.00);
+        List<String> validTypes = Arrays.asList("44901, 2012, Honda, Civic, SUV, Gray, 103221, 6995.00");
         if (!validTypes.contains(type)) {
             System.out.println("Invalid vehicle type. Please enter a valid type.");
             return;
@@ -213,21 +213,31 @@ public class UserInterface {
             System.out.println("Mileage:");
             double mileage = scanner.nextDouble();
 
-            Vehicle vehicle = new Vehicle(make, model, year, color, mileage);
+            Vehicle newVehicle = new Vehicle("make, model, year, color, mileage");
 
-            dealership.addVehicle(newVehicle);
+            boolean added = dealership.addVehicle(newVehicle);
 
-            System.out.println("Vehicle added successfully:");
-            System.out.println(newVehicle);
+            if (added) {
+                System.out.println("Vehicle added successfully:");
+            } else {
+                System.out.println("Failed to add vehicle.");
+            }
     }
 
-    public void processRemoveVehicleRequest() {
-        // Process user request to remove a vehicle
-        // Get input for vehicle details or select from displayed vehicles
-        // Call dealership method to remove the vehicle
+    private void processRemoveVehicleRequest() {
+        System.out.println("Enter the ID of the vehicle to remove:");
+        int vehicleId = scanner.nextInt();
+
+        // Remove the vehicle from the dealership's inventory
+        boolean removed = dealership.removeVehicle(vehicleId);
+
+        // Provide feedback to the user based on whether the vehicle was successfully removed or not
+        if (removed) {
+            System.out.println("Vehicle with ID " + vehicleId + " removed successfully.");
+        } else {
+            System.out.println("No vehicle found with ID " + vehicleId + ".");
+        }
     }
-
-
 }
 
 
